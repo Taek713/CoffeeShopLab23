@@ -63,7 +63,7 @@ public class CoffeeShopController {
 	public ModelAndView showAdminPage() {
 
 		ModelAndView mv = new ModelAndView("admin");
-		mv.addObject("testadmin", menuDao.findAll());
+		mv.addObject("menu", menuDao.findAll());
 		return mv;
 	}
 

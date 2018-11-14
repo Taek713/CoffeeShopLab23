@@ -23,7 +23,7 @@
     </tr>
         <c:forEach var="menuItem" items="${ menu }">
         <tr>		
-        		<td>${ menuItem.id } </td>
+        		
                 <td>${ menuItem.name }</td>
 				<td>${ menuItem.description }</td>
 				<td>${ menuItem.price }</td>
