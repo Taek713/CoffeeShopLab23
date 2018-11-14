@@ -28,12 +28,12 @@
 				<td>${ menuItem.description }</td>
 				<td>${ menuItem.price }</td>
             <td>
-                <a href="updateItem?id=${menuItem.name }">
+                <a href="edititem?id=${menuItem.id }">
                     <button value="Edit Item">Edit</button>
                 </a>
             </td>
             <td>
-                <a href="delete?id=${menuItem.name}" onclick="areYouSure()">
+                <a href="delete?id=${menuItem.id}" onclick="areYouSure()">
                     <button value="Delete Item">Delete</button>
                 </a>
             </td>

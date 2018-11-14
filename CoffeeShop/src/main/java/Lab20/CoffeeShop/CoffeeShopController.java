@@ -16,7 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class CoffeeShopController {
 
 	@Autowired
-	private MenuDaoJdbc menuDao;
+	private MenuDao menuDao;
 
 	@RequestMapping("/")
 	public ModelAndView home() {
@@ -81,27 +81,36 @@ public class CoffeeShopController {
 	}
 
 	@RequestMapping("/testmenu/{id}")
-	public ModelAndView showItem(@PathVariable("id") Long id) {
+	public ModelAndView showItem(@RequestParam("id") Long id) {
 		MenuItem menu = menuDao.findById(id);
 
 		return new ModelAndView("testadmin", "menuItem", menu);
 	}
+	
+	@RequestMapping("/delete")
+	public ModelAndView deleteItem(@RequestParam("id") Long id) {
+		ModelAndView mv = new ModelAndView("/admin");
+		menuDao.delete(id);
+		mv.addObject("menu", menuDao.findAll());
+		return mv;
+	}
 
-	@RequestMapping("/testmenu/{id}/delete")
-	public ModelAndView remove(@PathVariable("id") Long id) {
+	@RequestMapping("/testmenu/{id}/")
+	public ModelAndView remove(@RequestParam("id") Long id) {
 		menuDao.delete(id);
 		return new ModelAndView("redirect:/testmenu");
 	}
 
-	@RequestMapping("/testmenu/{id}/edititem")
-	public ModelAndView edit(@PathVariable("id") Long id) {
+	@RequestMapping("/edititem")
+	public ModelAndView edit(@RequestParam("id") Long id) {
+		ModelAndView mv = new ModelAndView("/admin");
 		MenuItem menu = menuDao.findById(id);
-
+		mv.addObject("menu", menuDao.findAll());
 		return new ModelAndView("edititem", "menuItem", menu);
 	}
 
 	@PostMapping("/testmenu/{id}/edititem")
-	public ModelAndView save(@PathVariable("id") Long id, MenuItem menu) {
+	public ModelAndView save(@RequestParam("id") Long id, MenuItem menu) {
 		menu.setId(id);
 		menuDao.update(menu);
 		return new ModelAndView("redirect:/testmenu");

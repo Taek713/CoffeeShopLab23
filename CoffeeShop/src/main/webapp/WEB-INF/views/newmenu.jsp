@@ -28,8 +28,8 @@
 		<c:forEach var="menuItem" items="${ menu }">
 			<tr>
 				<td>${ menuItem.name }</td>
-				<td>${menuItem.description }</td>
-				<td>${menuItem.price}</td>
+				<td>${ menuItem.description }</td>
+				<td>${ menuItem.price }</td>
 			</tr>
 		</c:forEach>
 		<tr>

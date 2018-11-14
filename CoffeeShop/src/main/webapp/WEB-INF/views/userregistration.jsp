@@ -11,6 +11,7 @@
 
 <header>
 	<a href="/">Home</a>
+	<a href = "/testmenu">Menu</a>
 </header>
 
 
@@ -55,8 +56,8 @@
 	</form>
 
 	<footer>
-		<a href = "/testmenu">Menu</a>
 		<a href="/">Home</a>
+		<a href = "/testmenu">Menu</a>
 	</footer>
 
 
