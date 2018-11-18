@@ -2,6 +2,8 @@ package Lab20.CoffeeShop;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,13 +12,19 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class CoffeeShopController {
 
 	@Autowired
 	private MenuDao menuDao;
+	@Autowired
+	private UserDao userDao;
+	@Autowired
+	private CartItemDao cartDao;
 
 	@RequestMapping("/")
 	public ModelAndView home() {
@@ -25,28 +33,7 @@ public class CoffeeShopController {
 		return my;
 	}
 
-	@RequestMapping("/userregistration")
-	public ModelAndView showregistration() {
-		ModelAndView my = new ModelAndView("userregistration");
 
-		return my;
-	}
-
-	@RequestMapping("/summarypage")
-
-	public ModelAndView addUser(Model model, @RequestParam("firstname") String firstname,
-			@RequestParam("lastname") String lastname, @RequestParam("email") String email,
-			@RequestParam("phonenumber") String phonenumber, @RequestParam("password") String password) {
-
-		ModelAndView my = new ModelAndView("summarypage");
-		my.addObject("firstname", firstname);
-		my.addObject("lastname", lastname);
-		my.addObject("email", email);
-		my.addObject("phonenumber", phonenumber);
-		my.addObject("password", password);
-
-		return my;
-	}
 
 	@RequestMapping("/testmenu")
 	public ModelAndView menu() {
@@ -68,8 +55,8 @@ public class CoffeeShopController {
 	}
 
 	@PostMapping("/testmenu")
-	public ModelAndView newMenu(MenuItem menu) {
-		menuDao.create(menu);
+	public ModelAndView newMenu(User user) {
+		userDao.create(user);
 
 		return new ModelAndView("redirect:/testmenu");
 	}
@@ -86,7 +73,7 @@ public class CoffeeShopController {
 
 		return new ModelAndView("testadmin", "menuItem", menu);
 	}
-	
+
 	@RequestMapping("/delete")
 	public ModelAndView deleteItem(@RequestParam("id") Long id) {
 		ModelAndView mv = new ModelAndView("/admin");
@@ -115,5 +102,24 @@ public class CoffeeShopController {
 		menuDao.update(menu);
 		return new ModelAndView("redirect:/testmenu");
 	}
+
+	@RequestMapping("/cart")
+	public ModelAndView showcart() {
+		ModelAndView mv = new ModelAndView("cart");
+		mv.addObject("cartItem", cartDao.findAll());
+		return mv;
+	}
+
+	@RequestMapping("/add-to-cart")
+	public ModelAndView addToCart(@RequestParam("id") Long id) {
+		MenuItem m = menuDao.findById(id);
+		CartItem c = new CartItem();
+		c.setQuantity(1);
+		c.setMenuItem(m);
+		System.out.println(c);
+		cartDao.create(c);
+		return new ModelAndView("redirect:/cart");
+	}
+ 
 
 }

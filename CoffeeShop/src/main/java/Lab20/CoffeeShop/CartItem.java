@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
 public class CartItem {
@@ -18,7 +19,17 @@ public class CartItem {
 	private Integer quantity;
 
 	@ManyToOne
-	private MenuItem menuItems;
+	private MenuItem menuItem;
+	@OneToOne
+	private User user;
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
 
 	public CartItem() {
 		super();
@@ -41,12 +52,18 @@ public class CartItem {
 		this.quantity = quantity;
 	}
 
-	public MenuItem getMenuItems() {
-		return menuItems;
+	public MenuItem getMenuItem() {
+		return menuItem;
 	}
 
-	public void setMenuItems(MenuItem menuItems) {
-		this.menuItems = menuItems;
+	public void setMenuItem(MenuItem menuItem) {
+		this.menuItem = menuItem;
 	}
+
+	@Override
+	public String toString() {
+		return "CartItem [id=" + id + ", quantity=" + quantity + ", menuItem=" + menuItem + ", user=" + user + "]";
+	}
+	
 
 }

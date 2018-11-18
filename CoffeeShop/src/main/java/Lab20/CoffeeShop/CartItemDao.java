@@ -15,15 +15,15 @@ public class CartItemDao {
 	@PersistenceContext
 	private EntityManager em;
 	
-	public List<MenuItem> findAll() {
-		return em.createQuery("FROM MenuItem", MenuItem.class).getResultList();
+	public List<CartItem> findAll() {
+		return em.createQuery("FROM CartItem", CartItem.class).getResultList();
 	}
 	
-	public void create(MenuItem menuItem) {
-		em.persist(menuItem);
+	public void create(CartItem c) {
+		em.persist(c);
 	}
 	
-	public void update(MenuItem menuItem) {
+	public void update(CartItem menuItem) {
 		em.merge(menuItem);
 	}
 

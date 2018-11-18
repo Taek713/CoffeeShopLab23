@@ -1,16 +1,12 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="list.css" />
-<title>Coffee Shop!</title>
+<title>Insert title here</title>
 </head>
-<%@include file="partials/header.jsp"%>
-<h1>Welcome to Tae's Coffee shop!</h1>
-
+<%@include file="partials/header.jsp" %>
 <body>
 
 <style>
@@ -21,7 +17,7 @@
         }
         body {
             background-size: 80px 60px;
-            background: url("https://cdn.wallpapersafari.com/33/58/U5ysx0.jpg") no-repeat;
+            background: url("https://cdn.wallpapersafari.com/26/65/VlXCO4.jpg") no-repeat;
             background-size: 100%;
             text-align: center;
             color: white;
@@ -47,20 +43,21 @@
         }
     </style>
 
-	<p>Navigate to the registry page above or below!
-		</p>
-
-		
-
-
+	<h1>Login</h1>
+	
+	<p class="message">${ message }</p>
+	
+	<form action="/testmenu" method="post">
 		<p>
-		<a href="/userregistration">Sign Up!</a>
+			<label for="username">Username:</label> <input id="username" name="username" value="${ param.username }" required minlength="2" />
+		</p>		<p>
+			<label for="password">Password:</label> <input id="password" type="password" name="password" required minlength="2" />
 		</p>
-
-
+		<p>
+			<button>Submit</button>
+		</p>
+	</form>
+	
 
 </body>
-
-
-
 </html>
