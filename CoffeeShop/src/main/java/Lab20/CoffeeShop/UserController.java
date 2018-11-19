@@ -30,12 +30,13 @@ public class UserController {
 		if (user == null) {
 			return new ModelAndView("login", "message", "Incorrect username or password");
 		}
-		if (!user.getPassword().equals(password)) {
-			return new ModelAndView("login", "message", "Incorrect username or password");
-		}
+//		if (!user.getPassword().equals(password)) {
+//			return new ModelAndView("login", "message", "Incorrect username or password");
+//		}
 
 		// login is for adding to the session
 		session.setAttribute("user", user);
+		System.out.println("hello ");
 		redir.addFlashAttribute("message", "Welcome Back");
 
 		return new ModelAndView("redirect:/");

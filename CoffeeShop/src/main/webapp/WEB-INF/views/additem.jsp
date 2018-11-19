@@ -8,8 +8,8 @@
 <link rel="stylesheet" href="/list.css" />
 <title>Insert title here</title>
 </head>
-<body class="body6">
-
+<body>
+<%@include file="partials/header.jsp"%>
 
 	<h1>Add an Item</h1>
 	<form action="/testmenu" method="post">

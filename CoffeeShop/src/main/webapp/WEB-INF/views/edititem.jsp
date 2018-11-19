@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
@@ -8,8 +8,9 @@
 <link rel="stylesheet" href="list.css" />
 <title>Insert title here</title>
 </head>
-<body class = "body7">
-<h1>Edit an Item</h1>
+<body class="body7">
+<%@include file="partials/header.jsp"%>
+	<h1>Edit an Item</h1>
 	<form action="/testmenu" method="post">
 		<table>
 			<thead>
